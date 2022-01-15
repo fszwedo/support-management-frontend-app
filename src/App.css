@@ -1,0 +1,26 @@
+@font-face {
+  font-family: 'Campton';
+  src: local('Campton'), url(./resources/Campton-Book.woff) format('woff');
+}
+
+body {
+  font-family: sans-serif;
+  background-color: rgb(20,20,20);
+  color: white;
+  font-family: 'Campton', sans-serif;
+}
+
+.main{
+  display:flex;
+  width:100%;
+}
+
+/* .nav{
+  width:15%;
+}
+
+.switch{
+ width: 85%;
+} */
+
+

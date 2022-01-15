@@ -1,0 +1,17 @@
+.header {
+    display: flex;
+    height: 5vh;
+    padding: 20px 2%;
+    border-bottom: 1px solid grey;
+    justify-content: space-between;
+}
+
+.name {
+    font-size: 28px;
+    text-align: center;
+    line-height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
