@@ -1,3 +1,5 @@
+import ShiftRotaTable from '../components/ShiftRotaTable/ShiftRotaTable'
+
 interface ShiftRotaPageProps {
 }
 
@@ -5,7 +7,7 @@ interface ShiftRotaPageProps {
 function ShiftRotaPage (props: ShiftRotaPageProps) {
     
     return <div>
-      No Elo, strona zmian na rejonie
+      <ShiftRotaTable/>
     </div>
   }
 

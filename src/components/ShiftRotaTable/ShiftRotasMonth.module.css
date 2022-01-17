@@ -1,0 +1,13 @@
+.monthWrapper{
+    display: flex;
+    flex-direction: column;
+}
+
+.rowWrapper{
+    display: flex;
+    flex-direction: row;
+}
+
+.name{
+    width: 100px;
+}

@@ -1,0 +1,17 @@
+.noShift {
+    background-color: grey;
+}
+
+.morningShift {
+    background-color: green;
+}
+
+.afternoonShift { 
+    background-color: orange;
+}
+
+.tile {
+    width: 30px;
+    height: 20px;
+    border: 1px solid white;
+}
