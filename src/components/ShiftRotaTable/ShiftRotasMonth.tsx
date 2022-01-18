@@ -25,22 +25,20 @@ function ShiftEntryMonth(props: ShiftEntryMonthProps) {
         setAgents(agentsArray);
     }
 
-    
+    console.log(props.shiftData)
     
     const generateMonthTable = () => {
         const daysInMonth = new Date(props.year, props.month, 0).getDate();
-        console.log(agents)
         for (let i = 0; i < agents.length; i++) {
             const agentRow: JSX.Element[] = [];
             for (let j = 0; j < daysInMonth; j++) {
-                const date = new Date(props.year, props.month, j)
+                const date = new Date(props.year, props.month, j + 1)
                 const entry = props.shiftData.find(el => new Date(el.date).getTime() === date.getTime())
                 
                 if (!entry) agentRow.push(<ShiftEntryTile key={`${agents[i]} ${date}`} shiftStart={0}></ShiftEntryTile>)
                 else {
                     const agentIndex = entry!.agents.findIndex(el => el === agents[i])
                     const agentWorkingHours = entry!.hours[agentIndex].split('-');
-                    console.log(agentWorkingHours)
                     agentRow.push(<ShiftEntryTile key={`${agents[i]} ${date}`} shiftStart={parseInt(agentWorkingHours[0])}></ShiftEntryTile>)
                 }
             }

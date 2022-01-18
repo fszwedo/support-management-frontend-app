@@ -17,6 +17,8 @@ function ShiftRotaTable(props: ShiftRotaTableProps) {
                 return response.json();
             }).then(data => {
                 setShifts(data);
+                setIsLoading(false);
+                
             });
     }
 
@@ -27,8 +29,7 @@ function ShiftRotaTable(props: ShiftRotaTableProps) {
     }
 
     useEffect(() => {
-        getShifts();
-        setIsLoading(false);
+        getShifts();        
     }, [])
 
     if (isLoading && shifts.length < 2) {
