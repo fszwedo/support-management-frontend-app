@@ -1,3 +1,11 @@
+.headerTile {
+    background-color: transparent;
+    border: 1px solid transparent !important;
+    text-align: center;
+    font-size: 12px;
+    border-left: 1px solid white !important;
+}
+
 .noShift {
     background-color: grey;
 }
@@ -9,6 +17,7 @@
 .afternoonShift { 
     background-color: orange;
 }
+
 
 .tile {
     width: 30px;

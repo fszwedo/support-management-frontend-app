@@ -1,6 +1,7 @@
 .monthWrapper{
     display: flex;
     flex-direction: column;
+    justify-content: center;
 }
 
 .rowWrapper{
@@ -8,6 +9,12 @@
     flex-direction: row;
 }
 
-.name{
+.name, .namePlaceholder{
     width: 100px;
+}
+
+.monthHeader{
+    text-align: center;
+    font-size: 20px;
+    margin-bottom: 10px;
 }

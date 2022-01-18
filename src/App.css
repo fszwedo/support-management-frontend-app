@@ -5,22 +5,23 @@
 
 body {
   font-family: sans-serif;
-  background-color: rgb(20,20,20);
+  background-color: rgb(20, 20, 20);
   color: white;
   font-family: 'Campton', sans-serif;
 }
 
-.main{
-  display:flex;
-  width:100%;
+.main {
+  display: flex;
+  width: 100%;
 }
 
-/* .nav{
-  width:15%;
+.nav {
+  width: 15vw;
 }
 
-.switch{
- width: 85%;
-} */
-
-
+.switch {
+  width: 85vw;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}

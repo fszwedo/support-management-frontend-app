@@ -6,8 +6,8 @@ interface SideNavigationProps {
 
 function SideNavigation(props: SideNavigationProps) {    
     return <div className={classes.main}>
-        <Link to='/shiftrota' className={classes.link}> Shift Rota</Link>
-        <Link to='/somethingelse' className={classes.link}> Something else</Link>
+        <Link to='/shiftrota' className={classes.button}>Shift Rota</Link>
+        <Link to='/somethingelse' className={classes.button}>Some other tab</Link>
     </div>
 }
 
