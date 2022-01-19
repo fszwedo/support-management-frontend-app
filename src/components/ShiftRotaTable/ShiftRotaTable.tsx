@@ -10,34 +10,44 @@ interface ShiftRotaTableProps {
 function ShiftRotaTable(props: ShiftRotaTableProps) {
     const [isLoading, setIsLoading] = useState(true);
     const [shifts, setShifts] = useState<[ShiftRotaEntry]>([{ date: '', agents: [''], hours: [''] }]);
+    let table: JSX.Element[] = [];
 
     const getShifts = () => {
         fetch(`${BACKEND_URL}api/shiftRota`)
             .then(response => {
                 return response.json();
             }).then(data => {
-                setShifts(data);
-                setIsLoading(false);
-                
+                setShifts(data.sort((firstEl: ShiftRotaEntry, secondEl: ShiftRotaEntry) =>  new Date(firstEl.date).getTime() - new Date(secondEl.date).getTime()));
+                setIsLoading(false);                
             });
     }
 
-    const getDateRange = () => {
-        const startDate = new Date(shifts[0].date.toString());
-        const endDate = new Date(shifts[shifts.length - 1].date.toString())
-        return [startDate, endDate]
+    
+    const generateMonthTables = () => {
+        const startDateMonth = new Date().getMonth();
+        const endDateMonth = new Date(shifts[shifts.length - 1].date.toString()).getMonth()
+        const currentYear = new Date().getFullYear();
+        console.log(startDateMonth, shifts[shifts.length - 1].date.toString())
+        const monthTables: JSX.Element[] = [];
+        for (let i = startDateMonth; i <= endDateMonth; i++) {
+            monthTables.push(<ShiftEntryMonth key = {`${i}-${currentYear}`} shiftData={shifts} month={i} year={currentYear} />)
+            
+        }
+        return monthTables;
     }
 
     useEffect(() => {
-        getShifts();        
+        getShifts();   
+        
     }, [])
-
+    table = generateMonthTables();     
+    console.log(table)
     if (isLoading && shifts.length < 2) {
         return <div>LOADING...</div>
     }
     else {
         return <div className={classes.table}>
-            <ShiftEntryMonth shiftData={shifts} month={0} year={2022} />
+            {table}
         </div>
     }
 

@@ -29,7 +29,7 @@ function ShiftEntryMonth(props: ShiftEntryMonthProps) {
     const generateMonthTable = () => {
         const monthHeader = <div className={classes.monthHeader}>{monthNames[props.month]} {props.year}</div>
         fullDivContent.push(monthHeader);
-        const daysInMonth = new Date(props.year, props.month, 0).getDate();
+        const daysInMonth = new Date(props.year, props.month+1, 0).getDate();
 
         //generate day and day name rows 
         const dayRow: JSX.Element[] = [];       

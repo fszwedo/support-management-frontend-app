@@ -1,26 +1,28 @@
 .headerTile {
     background-color: transparent;
-    border: 1px solid transparent !important;
     text-align: center;
     font-size: 12px;
     border-left: 1px solid white !important;
+    border-right: 1px solid white !important;
 }
 
 .noShift {
     background-color: grey;
+    border: 1px solid white;
 }
 
 .morningShift {
     background-color: green;
+    border: 1px solid white;
 }
 
 .afternoonShift { 
     background-color: orange;
+    border: 1px solid white;
 }
 
 
 .tile {
     width: 30px;
-    height: 20px;
-    border: 1px solid white;
+    height: 20px;    
 }
