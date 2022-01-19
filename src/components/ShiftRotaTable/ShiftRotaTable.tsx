@@ -17,33 +17,32 @@ function ShiftRotaTable(props: ShiftRotaTableProps) {
             .then(response => {
                 return response.json();
             }).then(data => {
-                setShifts(data.sort((firstEl: ShiftRotaEntry, secondEl: ShiftRotaEntry) =>  new Date(firstEl.date).getTime() - new Date(secondEl.date).getTime()));
-                setIsLoading(false);                
+                setShifts(data.sort((firstEl: ShiftRotaEntry, secondEl: ShiftRotaEntry) => new Date(firstEl.date).getTime() - new Date(secondEl.date).getTime()));
+                setIsLoading(false);
             });
     }
 
-    
+
     const generateMonthTables = () => {
         const startDateMonth = new Date().getMonth();
         const endDateMonth = new Date(shifts[shifts.length - 1].date.toString()).getMonth()
         const currentYear = new Date().getFullYear();
         console.log(startDateMonth, shifts[shifts.length - 1].date.toString())
         const monthTables: JSX.Element[] = [];
-        for (let i = startDateMonth; i <= endDateMonth; i++) {
-            monthTables.push(<ShiftEntryMonth key = {`${i}-${currentYear}`} shiftData={shifts} month={i} year={currentYear} />)
-            
-        }
+        for (let i = startDateMonth; i <= endDateMonth; i++) monthTables.push(<ShiftEntryMonth key={`${i}-${currentYear}`} shiftData={shifts} month={i} year={currentYear} />)
         return monthTables;
     }
 
     useEffect(() => {
-        getShifts();   
-        
+        getShifts();
+
     }, [])
-    table = generateMonthTables();     
+    table = generateMonthTables();
     console.log(table)
     if (isLoading && shifts.length < 2) {
-        return <div>LOADING...</div>
+        return <div className={classes.loaderContainer}>
+            <div className={classes.hourglass}></div>
+        </div>
     }
     else {
         return <div className={classes.table}>
