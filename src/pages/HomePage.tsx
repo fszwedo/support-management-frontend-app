@@ -3,7 +3,7 @@ interface HomePageProps {
   
   function HomePage (props: HomePageProps) {      
       return <div>
-        No Elo, strona główna na rejonie
+        This page is blank, but expect some cool content here!
       </div>
     }
   

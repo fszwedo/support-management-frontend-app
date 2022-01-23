@@ -16,15 +16,15 @@ function App() {
           <SideNavigation />
         </div>
         <div className='switch'>
-          <Switch>
-            <Route exact path={APPPATH}>
-              <HomePage />
-            </Route>
+          <Switch>            
             <Route path={PATHS.SHIFTROTA}>
               <ShiftRotaPage />
             </Route>
+            <Route path={APPPATH}>
+              <HomePage />
+            </Route>
             <Route>
-              <Redirect to={APPPATH} />
+              <Redirect to={APPPATH}/>
             </Route>
           </Switch>
         </div>
