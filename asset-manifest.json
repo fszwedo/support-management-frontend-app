@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/support-management-frontend-app/static/css/main.7925ad91.css",
+    "main.js": "/support-management-frontend-app/static/js/main.2ff2396b.js",
+    "static/js/787.e680f0b1.chunk.js": "/support-management-frontend-app/static/js/787.e680f0b1.chunk.js",
+    "static/media/Campton-Book.woff": "/support-management-frontend-app/static/media/Campton-Book.ee2ed0fa1cb4107d311e.woff",
+    "static/media/zoovulogo.svg": "/support-management-frontend-app/static/media/zoovulogo.778af77c7862facf0109a8ccc22a98e8.svg",
+    "index.html": "/support-management-frontend-app/index.html",
+    "main.7925ad91.css.map": "/support-management-frontend-app/static/css/main.7925ad91.css.map",
+    "main.2ff2396b.js.map": "/support-management-frontend-app/static/js/main.2ff2396b.js.map",
+    "787.e680f0b1.chunk.js.map": "/support-management-frontend-app/static/js/787.e680f0b1.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7925ad91.css",
+    "static/js/main.2ff2396b.js"
+  ]
+}
