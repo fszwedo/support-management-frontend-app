@@ -8,6 +8,7 @@ on:
     paths-ignore:
       - '**/*.md'
 
+jobs:
   build-frontend:
     name: "Build CodersCamp Organization App Frontend"
     runs-on: ubuntu-latest
