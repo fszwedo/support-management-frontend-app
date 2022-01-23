@@ -42,7 +42,7 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3.7.0-6
         if: ${{ github.event_name != 'pull_request' && always() }}
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.ACTIONS_DEPLOY_ACCESS_TOKEN }}
           publish_dir: "./build"
           user_name: 'github-actions[bot]'
           user_email: 'github-actions[bot]@users.noreply.github.com'
