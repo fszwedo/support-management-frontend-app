@@ -5,7 +5,7 @@ import HomePage from './pages/HomePage';
 import ShiftRotaPage from './pages/ShiftRotaPage';
 import SideNavigation from './components/SideNavigation/SideNavigation';
 import Header from './components/Header/Header';
-import { APPPATH } from './constants'
+import { APPPATH, PATHS } from './constants'
 
 function App() {
   return (
@@ -20,10 +20,10 @@ function App() {
             <Route exact path={APPPATH}>
               <HomePage />
             </Route>
-            <Route path={APPPATH + '/shiftrota'}>
+            <Route path={PATHS.SHIFTROTA}>
               <ShiftRotaPage />
             </Route>
-            <Route exact path="/">
+            <Route>
               <Redirect to={APPPATH} />
             </Route>
           </Switch>
