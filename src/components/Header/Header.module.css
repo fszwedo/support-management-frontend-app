@@ -1,9 +1,9 @@
 .header {
     display: flex;
-    height: 5vh;
     padding: 20px 2%;
     border-bottom: 1px solid grey;
     justify-content: space-between;
+    height: 100%;
 }
 
 .name {

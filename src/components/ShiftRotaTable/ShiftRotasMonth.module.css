@@ -1,21 +1,48 @@
-.monthWrapper{
+.monthWrapper {
     display: flex;
     flex-direction: column;
     justify-content: center;
     margin-bottom: 30px;
 }
 
-.rowWrapper{
+.monthWrapper > * > * {
+    box-sizing: content-box;
+}
+
+.rowWrapper {
     display: flex;
     flex-direction: row;
 }
 
-.name, .namePlaceholder{
+.name,
+.namePlaceholder {
     width: 100px;
+    border: none;
 }
 
-.monthHeader{
+.monthHeader {
     text-align: center;
     font-size: 20px;
     margin-bottom: 10px;
 }
+
+.rowWrapper:last-child > *:nth-child(n+2) {
+    border-bottom: 1px solid white;
+}
+
+
+/* in first two rows (day and day number) add right border */
+/* .rowWrapper:nth-child(n+2):nth-child(-n+3) > *:not(:first-child) {
+    border-right: 1px solid white;
+} */
+
+/* add left border for the first table element */
+/* .rowWrapper:nth-child(n+2):nth-child(-n+3) > *:nth-child(n+1) {
+    border-right: 1px solid white;
+}
+
+.rowWrapper:nth-child(n+4) > *:nth-child(n+1) {
+    border-right: 1px solid white;
+    border-top: 1px solid white;
+} */
+

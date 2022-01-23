@@ -3,7 +3,9 @@ interface HomePageProps {
   
   function HomePage (props: HomePageProps) {      
       return <div>
-        This page is blank, but expect some cool content here!
+        <h2>Welcome in the Zoovu Support Application</h2>
+        <p></p>
+
       </div>
     }
   

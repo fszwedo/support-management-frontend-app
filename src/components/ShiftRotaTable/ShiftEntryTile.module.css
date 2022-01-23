@@ -2,27 +2,29 @@
     background-color: transparent;
     text-align: center;
     font-size: 12px;
-    border-left: 1px solid white !important;
-    border-right: 1px solid white !important;
+    border: none !important;
+    border-right: 1px solid white !important;  
 }
 
 .noShift {
-    background-color: grey;
-    border: 1px solid white;
+    background-color: grey;    
 }
 
 .morningShift {
     background-color: green;
-    border: 1px solid white;
 }
 
 .afternoonShift { 
     background-color: orange;
-    border: 1px solid white;
 }
-
 
 .tile {
     width: 30px;
     height: 20px;    
+    border-right: 1px solid white;
+    border-top: 1px solid white;
+}
+
+.tile:nth-child(2), .headerTile:nth-child(2) {
+    border-left: 1px solid white !important;
 }

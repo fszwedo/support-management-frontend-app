@@ -10,13 +10,15 @@ import { APPPATH, PATHS } from './constants'
 function App() {
   return (
     <div className="App">
-      <Header />
+      <div className='header'>
+        <Header />
+      </div>
       <div className='main'>
         <div className='nav'>
           <SideNavigation />
         </div>
         <div className='switch'>
-          <Switch>            
+          <Switch>
             <Route path={PATHS.SHIFTROTA}>
               <ShiftRotaPage />
             </Route>
@@ -24,7 +26,7 @@ function App() {
               <HomePage />
             </Route>
             <Route>
-              <Redirect to={APPPATH}/>
+              <Redirect to={APPPATH} />
             </Route>
           </Switch>
         </div>
