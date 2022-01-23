@@ -4,4 +4,6 @@ export const APPPATH = '/support-management-frontend-app'
 export const PATHS = {
      SHIFTROTA: APPPATH + '/shiftrotas',
      TESTPATH: APPPATH + '/test',
+     HOME: APPPATH,
+     TIGER: 'https://tiger.zoovu.com'
 }

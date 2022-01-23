@@ -3,6 +3,7 @@ import { BACKEND_URL } from '../../constants'
 import { useState, useEffect } from 'react'
 import { ShiftRotaEntry } from '../../models/ShiftRotaData'
 import ShiftEntryMonth from './ShiftRotasMonth'
+import { ReactComponent as ZoovuLogo } from '../../resources/zoovulogo.svg';
 
 interface ShiftRotaTableProps {
 }
@@ -39,9 +40,10 @@ function ShiftRotaTable(props: ShiftRotaTableProps) {
     }, [])
     table = generateMonthTables();
     console.log(table)
+
     if (isLoading && shifts.length < 2) {
         return <div className={classes.loaderContainer}>
-            <div className={classes.hourglass}></div>
+            <ZoovuLogo className={classes.hourglass} />
         </div>
     }
     else {
@@ -49,8 +51,6 @@ function ShiftRotaTable(props: ShiftRotaTableProps) {
             {table}
         </div>
     }
-
-
 }
 
 export default ShiftRotaTable;
