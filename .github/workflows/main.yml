@@ -29,7 +29,7 @@ jobs:
           path: ./build
   deploy-frontend-on-github-pages:
     name: "Deploy app to GitHub Pages from main branch source code"
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/master'
     needs: build-frontend
     runs-on: ubuntu-latest
     steps:
