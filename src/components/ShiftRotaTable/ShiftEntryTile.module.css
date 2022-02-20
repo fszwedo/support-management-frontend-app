@@ -3,28 +3,49 @@
     text-align: center;
     font-size: 12px;
     border: none !important;
-    border-right: 1px solid white !important;  
+    border-right: 1px solid white !important;
 }
 
 .noShift {
-    background-color: grey;    
+    background-color: grey;
+}
+
+.pulse {
+    background-color: black;
+    animation-name: color;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    cursor: pointer;
 }
 
 .morningShift {
     background-color: green;
 }
 
-.afternoonShift { 
+.afternoonShift {
     background-color: orange;
 }
 
 .tile {
     width: 30px;
-    height: 20px;    
+    height: 20px;
     border-right: 1px solid white;
     border-top: 1px solid white;
 }
 
-.tile:nth-child(2), .headerTile:nth-child(2) {
+.tile:nth-child(2),
+.headerTile:nth-child(2) {
     border-left: 1px solid white !important;
 }
+
+@keyframes color {
+    0% {
+      background-color: black;
+    }
+    50% {
+      background-color: rgb(66, 64, 64);
+    }
+    100% {
+      background-color: black;
+    }
+  }

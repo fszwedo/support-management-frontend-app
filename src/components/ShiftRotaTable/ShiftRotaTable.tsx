@@ -3,7 +3,8 @@ import { BACKEND_URL } from '../../constants'
 import { useState, useEffect } from 'react'
 import { ShiftRotaEntry } from '../../models/ShiftRotaData'
 import ShiftEntryMonth from './ShiftRotasMonth'
-import { ReactComponent as ZoovuLogo } from '../../resources/zoovulogo.svg';
+import Loader from '../Loader/Loader'
+
 
 interface ShiftRotaTableProps {
 }
@@ -14,7 +15,7 @@ function ShiftRotaTable(props: ShiftRotaTableProps) {
     let table: JSX.Element[] = [];
 
     const getShifts = () => {
-        fetch(`${BACKEND_URL}api/shiftRota`)
+        fetch(`${BACKEND_URL}/api/shiftRota`)
             .then(response => {
                 return response.json();
             }).then(data => {
@@ -42,9 +43,7 @@ function ShiftRotaTable(props: ShiftRotaTableProps) {
     console.log(table)
 
     if (isLoading && shifts.length < 2) {
-        return <div className={classes.loaderContainer}>
-            <ZoovuLogo className={classes.hourglass} />
-        </div>
+        return <Loader/>
     }
     else {
         return <div className={classes.table}>

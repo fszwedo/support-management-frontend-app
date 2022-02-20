@@ -1,20 +1,32 @@
+import { MouseEventHandler } from 'react'
 import { ShiftRotaEntry } from '../../models/ShiftRotaData'
 import classes from './ShiftEntryTile.module.css'
+import { useState } from 'react';
 
 
 interface ShiftEntryTileProps {
     shiftStart: number | string,
-    children?: number | string
+    date?: string,
+    children?: number | string,
+    onClick?: MouseEventHandler,
+    pulse?: boolean
 }
 
-function ShiftEntryTile(props: ShiftEntryTileProps) {  
-    if(props.shiftStart === 0) return <div className={`${classes.headerTile} ${classes.tile}`}>{props.children}</div>    
-    
-    if(props.shiftStart < 14) return <div className={`${classes.morningShift} ${classes.tile}`}></div>
+function ShiftEntryTile(props: ShiftEntryTileProps) {
+    let className = 'noShift';
 
-    if(props.shiftStart >= 14) return <div className={`${classes.afternoonShift} ${classes.tile}`}></div>
+    if (props.shiftStart === 0) className = 'headerTile';
+    else if (props.shiftStart < 14) className = 'morningShift';
+    else if (props.shiftStart >= 14) className = 'afternoonShift';
 
-    return <div className={`${classes.noShift} ${classes.tile}`}></div>
+    let fullClass = `${classes[className]} ${classes.tile}`;
+    if (props.pulse) fullClass = fullClass + ` ${classes.pulse}`
+
+    return <div
+        className={fullClass}
+        onClick={props.onClick}>
+        {props.children}
+    </div>
 }
 
 export default ShiftEntryTile;

@@ -1,11 +1,14 @@
 import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import './App.css';
-import HomePage from './pages/HomePage';
-import ShiftRotaPage from './pages/ShiftRotaPage';
+import { APPPATH, PATHS } from './constants'
+
 import SideNavigation from './components/SideNavigation/SideNavigation';
 import Header from './components/Header/Header';
-import { APPPATH, PATHS } from './constants'
+
+import HomePage from './pages/HomePage';
+import ShiftRotaPage from './pages/ShiftRotaPage';
+import TestPage from './pages/TestPage';
 
 function App() {
   return (
@@ -22,6 +25,11 @@ function App() {
             <Route path={PATHS.SHIFTROTA}>
               <ShiftRotaPage />
             </Route>
+
+            <Route path={PATHS.TESTPATH}>
+              <TestPage />
+            </Route>
+            
             <Route path={APPPATH}>
               <HomePage />
             </Route>
