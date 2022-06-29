@@ -11,7 +11,7 @@
 }
 
 .pulse {
-    background-color: black;
+    background-color: rgb(20, 20, 20);
     animation-name: color;
     animation-duration: 2s;
     animation-iteration-count: infinite;
@@ -40,12 +40,12 @@
 
 @keyframes color {
     0% {
-      background-color: black;
+      background-color: rgb(20, 20, 20);
     }
     50% {
       background-color: rgb(66, 64, 64);
     }
     100% {
-      background-color: black;
+      background-color: rgb(20, 20, 20);
     }
   }

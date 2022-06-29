@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import { ShiftRotaEntry } from '../../models/ShiftRotaData'
 import Loader from '../Loader/Loader'
 import Modal from '../Modal/Modal'
+import BaseService from '../../app/baseService'
 
 interface ShiftChangeModalProps {
     day: string,
@@ -15,19 +16,23 @@ function ShiftChangeModal(props: ShiftChangeModalProps) {
     const [shift, setShift] = useState<ShiftRotaEntry>()
     const inputRefs = useRef<HTMLInputElement[]>([]);
 
-    const submitHandler: React.FormEventHandler = (event) => {
+    const submitHandler: React.FormEventHandler = async (event) => {
+        const service = new BaseService();
         event.preventDefault();
         let shiftData = shift;
-        if (shiftData)
+        if (shiftData) {
             for (let i = 0; i < (inputRefs.current.length); i++) {
                 shiftData.hours[i] = inputRefs.current[i].value
             }
+            shiftData.date = props.day;
 
-        console.log(shiftData);
+            await service.put('/shiftRota', shiftData);
+        }
         props.closeHandler();
     }
 
     const getShift = () => {
+        //to be redone to use baseservice
         fetch(`${BACKEND_URL}/api/shiftRota/${props.day}`)
             .then(response => {
                 return response.json();
@@ -58,7 +63,6 @@ function ShiftChangeModal(props: ShiftChangeModalProps) {
 
     useEffect(() => {
         getShift();
-        console.log(props.day)
     }, [props])
 
     generateAgentsAndHoursEditTable();

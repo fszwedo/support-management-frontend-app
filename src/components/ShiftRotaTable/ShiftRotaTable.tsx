@@ -4,6 +4,9 @@ import { useState, useEffect } from 'react'
 import { ShiftRotaEntry } from '../../models/ShiftRotaData'
 import ShiftEntryMonth from './ShiftRotasMonth'
 import Loader from '../Loader/Loader'
+import convertDate from '../../utilities/dateConverter'
+import BaseService from '../../app/baseService'
+import axios from 'axios';
 
 
 interface ShiftRotaTableProps {
@@ -14,36 +17,38 @@ function ShiftRotaTable(props: ShiftRotaTableProps) {
     const [shifts, setShifts] = useState<[ShiftRotaEntry]>([{ date: '', agents: [''], hours: [''] }]);
     let table: JSX.Element[] = [];
 
-    const getShifts = () => {
-        fetch(`${BACKEND_URL}/api/shiftRota`)
-            .then(response => {
-                return response.json();
-            }).then(data => {
-                setShifts(data.sort((firstEl: ShiftRotaEntry, secondEl: ShiftRotaEntry) => new Date(firstEl.date).getTime() - new Date(secondEl.date).getTime()));
-                setIsLoading(false);
-            });
+    const getShifts = async () => {
+        const service = new BaseService();
+        const data = (await service.get('/shiftRota')).data;
+        console.log(data)
+        setShifts(data.sort((firstEl: ShiftRotaEntry, secondEl: ShiftRotaEntry) => {
+            //split the date to get subelements
+            return convertDate(firstEl.date) - convertDate(secondEl.date)
+        }))
+
+        setIsLoading(false);
     }
 
-
     const generateMonthTables = () => {
-        const startDateMonth = new Date().getMonth();
-        const endDateMonth = new Date(shifts[shifts.length - 1].date.toString()).getMonth()
+        //+ 1 to compensate for the fact that getMonth returns values 0-11
+        const startDateMonth = new Date().getMonth() + 1;
+        const endDate = shifts[shifts.length - 1].date.split('-')
+        const endDateMonth = new Date(Date.UTC(parseInt(endDate[0]), parseInt(endDate[1]), parseInt(endDate[2]))).getMonth() + 1
         const currentYear = new Date().getFullYear();
-        console.log(startDateMonth, shifts[shifts.length - 1].date.toString())
+
         const monthTables: JSX.Element[] = [];
-        for (let i = startDateMonth; i <= endDateMonth; i++) monthTables.push(<ShiftEntryMonth key={`${i}-${currentYear}`} shiftData={shifts} month={i} year={currentYear} />)
-        return monthTables;
+        for (let i = startDateMonth; i <= endDateMonth; i++) monthTables.push(<ShiftEntryMonth key={`${i}-${currentYear}`} shiftData={shifts} month={i} year={currentYear} renderCallback={() => setIsLoading(true)} />)
+        table = monthTables;
     }
 
     useEffect(() => {
         getShifts();
+    }, [isLoading])
 
-    }, [])
-    table = generateMonthTables();
-    console.log(table)
+    generateMonthTables();
 
     if (isLoading && shifts.length < 2) {
-        return <Loader/>
+        return <Loader />
     }
     else {
         return <div className={classes.table}>

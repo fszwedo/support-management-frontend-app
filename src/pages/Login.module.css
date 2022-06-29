@@ -1,0 +1,32 @@
+.outerContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+.innerContainer {
+    background-color: #222;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40vw;
+    height: 40vh;
+    flex-direction: column;    
+    border-radius: 5px;
+    padding: 40px;
+}
+
+.input, .button {
+    width: 100%;
+    margin: 10px;
+}
+
+.input {
+    border-color: white;
+}
+
+.input-border {
+    border-color: white;
+}

@@ -4,11 +4,14 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
+import { StylesProvider } from '@material-ui/core/styles'
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <App />
+      <StylesProvider injectFirst>
+        <App />
+      </StylesProvider>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
