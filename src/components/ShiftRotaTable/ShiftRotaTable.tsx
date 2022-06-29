@@ -1,13 +1,10 @@
 import classes from './ShiftRotaTable.module.css'
-import { BACKEND_URL } from '../../constants'
 import { useState, useEffect } from 'react'
 import { ShiftRotaEntry } from '../../models/ShiftRotaData'
 import ShiftEntryMonth from './ShiftRotasMonth'
 import Loader from '../Loader/Loader'
 import convertDate from '../../utilities/dateConverter'
 import BaseService from '../../app/baseService'
-import axios from 'axios';
-
 
 interface ShiftRotaTableProps {
 }
@@ -20,12 +17,10 @@ function ShiftRotaTable(props: ShiftRotaTableProps) {
     const getShifts = async () => {
         const service = new BaseService();
         const data = (await service.get('/shiftRota')).data;
-        console.log(data)
         setShifts(data.sort((firstEl: ShiftRotaEntry, secondEl: ShiftRotaEntry) => {
             //split the date to get subelements
             return convertDate(firstEl.date) - convertDate(secondEl.date)
         }))
-
         setIsLoading(false);
     }
 

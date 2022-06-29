@@ -1,4 +1,4 @@
-import { AxiosResponse } from "axios";
+import axios, { AxiosResponse } from "axios";
 
 export const getUserFromLocalStorage = () => {
     const userId = localStorage.getItem("id");
@@ -18,4 +18,5 @@ export const saveUserDataToLocalStorage = (response: AxiosResponse) => {
     localStorage.setItem('type', response.data.type);
     localStorage.setItem('id', response.data._id);
     localStorage.setItem('token', response.headers?.["x-auth-token"]);
+    axios.defaults.headers.common = {'x-auth-token': response.headers?.["x-auth-token"]};
 }
