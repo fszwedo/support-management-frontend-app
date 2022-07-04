@@ -34,5 +34,6 @@ body {
   width: 85vw;
   display: flex;
   justify-content: center;
-  margin-top: 20px;
+  padding: 20px 0 ;
+  overflow-y: scroll;
 }

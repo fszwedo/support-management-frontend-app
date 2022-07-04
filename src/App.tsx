@@ -13,7 +13,7 @@ import TestPage from './pages/TestPage';
 
 import LoginPage from './pages/Login';
 
-import { getUserFromLocalStorage } from './app/utils';
+import { getUserFromLocalStorage, removeUserFromLocalStorage } from './app/utils';
 
 import { ThemeProvider, createTheme } from '@material-ui/core/styles'
 
@@ -30,14 +30,14 @@ const theme = createTheme({
       primary: '#fff',
     }
   }
-  })
+})
 
 function App() {
   const userData = getUserFromLocalStorage();
   const [isLogged, setIsLogged] = useState(Boolean(userData.userType));
 
   const MainContent = () => {
-    if (!isLogged) return <LoginPage submitHandler={() => {setIsLogged(true)}} />
+    if (!isLogged) return <LoginPage submitHandler={() => { setIsLogged(true) }} />
 
     else return <div className="App">
       <div className='header'>
@@ -45,7 +45,10 @@ function App() {
       </div>
       <div className='main'>
         <div className='nav'>
-          <SideNavigation />
+          <SideNavigation onLogout={() => {
+            setIsLogged(false);
+            removeUserFromLocalStorage();
+          }} />
         </div>
         <div className='switch'>
           <Switch>
