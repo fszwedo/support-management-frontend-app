@@ -1,13 +1,13 @@
-import TextField from '@material-ui/core/TextField'
-import Button from '@material-ui/core/Button'
-import Container from '@material-ui/core/Container'
-
 import classes from './Login.module.css'
 
 import { useRef, useState } from 'react'
 
 import BaseService from '../../app/baseService'
 import { saveUserDataToLocalStorage } from '../../app/utils'
+
+import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
+import Container from '@material-ui/core/Container'
 import { Typography } from '@material-ui/core'
 import CircularProgress from '@material-ui/core/CircularProgress'
 import Link from '@material-ui/core/Link'
@@ -100,7 +100,7 @@ function Login(props: LoginProps) {
             </Button>
             <Link                
                 variant='subtitle2'
-                onClick={props.openRegister()}
+                onClick={() => {props.openRegister()}}
             >No account? Register yourself!</Link>
         </form>
     </Container>
