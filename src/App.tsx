@@ -29,6 +29,9 @@ const theme = createTheme({
     text: {
       primary: '#fff',
     }
+  },
+  typography: {
+    fontFamily: 'Campton, sans-serif'
   }
 })
 

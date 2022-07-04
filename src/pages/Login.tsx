@@ -12,11 +12,13 @@ interface LoginPageProps {
 function LoginPage(props: LoginPageProps) {
     const [isRegisterActive, setisRegisterActive] = useState(false);
 
-
     return (<div>
         {isRegisterActive
-            ? <Register />
-            : <Login submitHandler={props.submitHandler} openRegister={() => { setisRegisterActive(true) }} />
+            ? <Register onFinish={() => {setisRegisterActive(false)}}/>
+            : <Login 
+            submitHandler={props.submitHandler} 
+            openRegister={() => { setisRegisterActive(true) }} 
+            />
         }
     </div>
     )
