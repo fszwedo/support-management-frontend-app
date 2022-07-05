@@ -1,10 +1,12 @@
 import classes from './ShiftChangeModal.module.css';
-import { BACKEND_URL } from '../../constants';
 import { useState, useEffect, useRef } from 'react';
 import { ShiftRotaEntry } from '../../models/ShiftRotaData'
 import Loader from '../Loader/Loader'
 import Modal from '../Modal/Modal'
 import BaseService from '../../app/baseService'
+import { convertDateToYYMMDD } from '../../utilities/dateConverter'
+
+import Button from '@material-ui/core/Button'
 
 interface ShiftChangeModalProps {
     day: string,
@@ -15,6 +17,7 @@ function ShiftChangeModal(props: ShiftChangeModalProps) {
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [shift, setShift] = useState<ShiftRotaEntry>()
     const inputRefs = useRef<HTMLInputElement[]>([]);
+    const day = convertDateToYYMMDD(props.day)
 
     const submitHandler: React.FormEventHandler = async (event) => {
         const service = new BaseService();
@@ -24,22 +27,18 @@ function ShiftChangeModal(props: ShiftChangeModalProps) {
             for (let i = 0; i < (inputRefs.current.length); i++) {
                 shiftData.hours[i] = inputRefs.current[i].value
             }
-            shiftData.date = props.day;
+            shiftData.date = day;
 
             await service.put('/shiftRota', shiftData);
         }
         props.closeHandler();
     }
 
-    const getShift = () => {
-        //to be redone to use baseservice
-        fetch(`${BACKEND_URL}/api/shiftRota/${props.day}`)
-            .then(response => {
-                return response.json();
-            }).then(data => {
-                setShift(data);
-                setIsLoading(false);
-            });
+    const getShift = async () => {
+        const service = new BaseService();
+        const response = await service.get(`/shiftRota/${day}`);
+        setShift(response.data);
+        setIsLoading(false);
     }
 
     const editHoursTable: JSX.Element[] = [];
@@ -80,7 +79,14 @@ function ShiftChangeModal(props: ShiftChangeModalProps) {
                 </div>
                 {editHoursTable}
                 <div className={classes.actions}>
-                    <button className={classes.button}>Save</button>
+                    <Button 
+                    className={`${classes.button} ${classes.save}`}
+                    onClick = {submitHandler}
+                    >Save</Button>
+                    <Button 
+                    className={`${classes.button} ${classes.close}`}
+                    onClick = {() => {props.closeHandler()}}
+                    >Close</Button>
                 </div>
             </form>
         </Modal>

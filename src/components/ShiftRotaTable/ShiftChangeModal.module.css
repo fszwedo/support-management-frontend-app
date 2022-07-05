@@ -22,8 +22,7 @@
     border-radius: 2px;
 }
 
-.button {
-    background-color: darkgreen;
+.button {    
     border-radius: 4px;
     border-style: none;
     box-sizing: border-box;
@@ -50,4 +49,12 @@
     width: 100%;
     margin-top: 10px;
     text-decoration: none;
+}
+
+.save {
+    background-color: darkgreen;
+}
+
+.close {
+    background-color: darkred;
 }

@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import { ShiftRotaEntry } from '../../models/ShiftRotaData'
 import ShiftEntryMonth from './ShiftRotasMonth'
 import Loader from '../Loader/Loader'
-import convertDate from '../../utilities/dateConverter'
+import { convertDateToUnixTimestamp } from '../../utilities/dateConverter'
 import BaseService from '../../app/baseService'
 
 interface ShiftRotaTableProps {
@@ -19,7 +19,7 @@ function ShiftRotaTable(props: ShiftRotaTableProps) {
         const data = (await service.get('/shiftRota')).data;
         setShifts(data.sort((firstEl: ShiftRotaEntry, secondEl: ShiftRotaEntry) => {
             //split the date to get subelements
-            return convertDate(firstEl.date) - convertDate(secondEl.date)
+            return convertDateToUnixTimestamp(firstEl.date) - convertDateToUnixTimestamp(secondEl.date)
         }))
         setIsLoading(false);
     }
@@ -28,7 +28,7 @@ function ShiftRotaTable(props: ShiftRotaTableProps) {
         //+ 1 to compensate for the fact that getMonth returns values 0-11
         const startDateMonth = new Date().getMonth() + 1;
         const endDate = shifts[shifts.length - 1].date.split('-')
-        const endDateMonth = new Date(Date.UTC(parseInt(endDate[0]), parseInt(endDate[1]), parseInt(endDate[2]))).getMonth() + 1
+        const endDateMonth = new Date(Date.UTC(parseInt(endDate[0]), parseInt(endDate[1]), parseInt(endDate[2]))).getMonth() 
         const currentYear = new Date().getFullYear();
 
         const monthTables: JSX.Element[] = [];

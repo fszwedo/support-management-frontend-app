@@ -3,7 +3,6 @@ import classes from './ShiftRotasMonth.module.css'
 import { ShiftRotaEntry } from '../../models/ShiftRotaData'
 import { useState, useEffect } from 'react'
 import ShiftChangeModal from './ShiftChangeModal'
-import convertDate from '../../utilities/dateConverter'
 
 interface ShiftEntryMonthProps {
     shiftData: ShiftRotaEntry[],

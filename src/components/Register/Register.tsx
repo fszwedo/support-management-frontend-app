@@ -66,6 +66,7 @@ function Register(props: RegisterProps) {
     }
 
     return (isSubmitted
+        //if form was submitted render the confirmation page
         ? (<Container className={classes.outerContainer}>
             <Container className={classes.innerContainer}>
                 <Typography variant='h5'>Your account has been created!</Typography>
@@ -85,6 +86,7 @@ function Register(props: RegisterProps) {
                 </Button>
             </Container>
         </Container>)
+        //if not - render registration form
         : (<Container className={classes.outerContainer}>
             <form className={classes.innerContainer}>
                 <Typography variant='h5'>Register in Zoovu Support App</Typography>
