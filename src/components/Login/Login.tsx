@@ -4,6 +4,7 @@ import { useRef, useState } from 'react'
 
 import BaseService from '../../app/baseService'
 import { saveUserDataToLocalStorage } from '../../app/utils'
+import CenteredWrapper from '../CenteredWrapper/CenteredWrapper'
 
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
@@ -47,8 +48,9 @@ function Login(props: LoginProps) {
         else return 'Log In'
     }
 
-    return (<Container className={classes.outerContainer}>
-        <form className={classes.innerContainer}>
+    return (<Container className={classes.container}>
+    <CenteredWrapper>
+        <form className={classes.form} >
             <Typography variant='h5'>Welcome in Zoovu Support App</Typography>
             <TextField
                 label="Login"
@@ -103,6 +105,7 @@ function Login(props: LoginProps) {
                 onClick={() => {props.openRegister()}}
             >No account? Register yourself!</Link>
         </form>
+    </CenteredWrapper>
     </Container>
     )
 }

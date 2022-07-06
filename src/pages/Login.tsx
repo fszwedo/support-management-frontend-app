@@ -1,6 +1,4 @@
-import classes from './Login.module.css'
-
-import { useRef, useState } from 'react'
+import { useState } from 'react'
 
 import Login from '../components/Login/Login'
 import Register from '../components/Register/Register'

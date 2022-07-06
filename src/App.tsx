@@ -12,6 +12,7 @@ import ShiftRotaPage from './pages/ShiftRotaPage';
 import TestPage from './pages/TestPage';
 import PageNotFound from './pages/PageNotFound'
 import UserInfoPage from './pages/UserInfoPage';
+import TokenVerify from './components/TokenVerify/TokenVerify';
 
 import LoginPage from './pages/Login';
 
@@ -41,6 +42,11 @@ function App() {
   const userData = getUserFromLocalStorage();
   const [isLogged, setIsLogged] = useState(Boolean(userData.userType));
 
+  const logout = () => {
+    setIsLogged(false);
+    removeUserFromLocalStorage();
+  }
+
   const MainContent = () => {
     if (!isLogged) return <LoginPage submitHandler={() => { setIsLogged(true) }} />
 
@@ -50,10 +56,7 @@ function App() {
       </div>
       <div className='main'>
         <div className='nav'>
-          <SideNavigation onLogout={() => {
-            setIsLogged(false);
-            removeUserFromLocalStorage();
-          }} />
+          <SideNavigation onLogout={logout} />
         </div>
         <div className='switch'>
           <Switch>
@@ -65,13 +68,14 @@ function App() {
             </Route>
             <Route path={APPPATH}>
               <HomePage />
-            </Route>            
+            </Route>
             <Route>
-              <ShiftRotaPage/>
+              <ShiftRotaPage />
             </Route>
           </Switch>
         </div>
       </div>
+      <TokenVerify onLogout={logout} />
     </div>
 
   }

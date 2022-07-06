@@ -11,7 +11,7 @@ interface ShiftRotaTableProps {
 
 function ShiftRotaTable(props: ShiftRotaTableProps) {
     const [isLoading, setIsLoading] = useState(true);
-    const [isReloading, setIsReloading] = useState(false);
+    const [isReloading, setIsReloading] = useState(true);
     const [shifts, setShifts] = useState<[ShiftRotaEntry]>([{ date: '', agents: [''], hours: [''] }]);
     let table: JSX.Element[] = [];
 
