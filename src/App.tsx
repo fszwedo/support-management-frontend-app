@@ -10,6 +10,8 @@ import Header from './components/Header/Header';
 import HomePage from './pages/HomePage';
 import ShiftRotaPage from './pages/ShiftRotaPage';
 import TestPage from './pages/TestPage';
+import PageNotFound from './pages/PageNotFound'
+import UserInfoPage from './pages/UserInfoPage';
 
 import LoginPage from './pages/Login';
 
@@ -55,18 +57,17 @@ function App() {
         </div>
         <div className='switch'>
           <Switch>
+            <Route path={PATHS.ME}>
+              <UserInfoPage />
+            </Route>
             <Route path={PATHS.SHIFTROTA}>
               <ShiftRotaPage />
             </Route>
-            <Route path={PATHS.TESTPATH}>
-              <TestPage />
-            </Route>
-
             <Route path={APPPATH}>
               <HomePage />
-            </Route>
+            </Route>            
             <Route>
-              <Redirect to={APPPATH} />
+              <ShiftRotaPage/>
             </Route>
           </Switch>
         </div>
@@ -79,7 +80,6 @@ function App() {
     <ThemeProvider theme={theme}>
       <MainContent />
     </ThemeProvider>
-
   );
 }
 

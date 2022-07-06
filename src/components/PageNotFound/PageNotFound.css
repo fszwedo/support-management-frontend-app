@@ -1,0 +1,19 @@
+.header {
+    display: flex;
+    padding: 20px 2%;
+    border-bottom: 1px solid grey;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.name {
+    font-size: 28px;
+    text-align: center;
+    line-height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+}

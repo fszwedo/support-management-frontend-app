@@ -7,7 +7,7 @@ interface TestPageProps {
 function TestPage (props: TestPageProps) {
     
     return <div>
-      <ShiftChangeModal day='22-01-05' closeHandler={() => {return null}}/>
+      <ShiftChangeModal day='22-03-05' closeHandler={() => {return null}}/>
     </div>
   }
 

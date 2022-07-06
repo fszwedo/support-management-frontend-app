@@ -6,6 +6,7 @@ export const APPPATH = ''
 export const PATHS = {
     SHIFTROTA: APPPATH + '/shiftrotas',
     TESTPATH: APPPATH + '/test',
+    ME: APPPATH + '/me',
     HOME: APPPATH,
-    TIGER: 'https://tiger.zoovu.com'
+    TIGER: 'https://tiger.zoovu.com',
 }

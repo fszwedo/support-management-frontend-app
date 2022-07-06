@@ -11,6 +11,7 @@ interface ShiftRotaTableProps {
 
 function ShiftRotaTable(props: ShiftRotaTableProps) {
     const [isLoading, setIsLoading] = useState(true);
+    const [isReloading, setIsReloading] = useState(false);
     const [shifts, setShifts] = useState<[ShiftRotaEntry]>([{ date: '', agents: [''], hours: [''] }]);
     let table: JSX.Element[] = [];
 
@@ -32,13 +33,14 @@ function ShiftRotaTable(props: ShiftRotaTableProps) {
         const currentYear = new Date().getFullYear();
 
         const monthTables: JSX.Element[] = [];
-        for (let i = startDateMonth; i <= endDateMonth; i++) monthTables.push(<ShiftEntryMonth key={`${i}-${currentYear}`} shiftData={shifts} month={i} year={currentYear} renderCallback={() => setIsLoading(true)} />)
+        for (let i = startDateMonth; i <= endDateMonth; i++) monthTables.push(<ShiftEntryMonth key={`${i}-${currentYear}`} shiftData={shifts} month={i} year={currentYear} renderCallback={() => setIsReloading(true)} />)
         table = monthTables;
     }
 
     useEffect(() => {
-        getShifts();
-    }, [isLoading])
+        if(isReloading) getShifts();   
+        setIsReloading(false)
+    }, [isReloading])
 
     generateMonthTables();
 
