@@ -11,7 +11,8 @@ import { UserType } from '../../models/User'
 import {
     Container,
     Button,
-    Typography
+    Typography, 
+    Grid
 } from '@material-ui/core'
 
 interface UserInfoProps {
@@ -40,23 +41,38 @@ function UserInfo(props: UserInfoProps) {
 
     return (isLoading ? <Loader /> :
         <CenteredWrapper>
-            <Container className={classes.container}>
-                <Typography variant='h6'>
-                    Your info:
-                </Typography>
-                <Container className={classes.row}>
-                    Name: {userData!.name}
-                </Container>
-                <Container className={classes.row}>
-                    Email: {userData!.email}
-                </Container>
-                <Container className={classes.row}>
-                    Permission level: {defineUserType(userData!.type)}
-                </Container>
-                <Container className={classes.row}>
-                    User since: {new Date(userData!.created).toLocaleDateString('en-GB')}
-                </Container>
-            </Container>
+            <Grid container className={classes.container}>
+                <Grid item xs={12} className={classes.firstRow}>
+                    <Typography align='center' variant='h5'>Your info:</Typography>
+                </Grid>
+                <Grid item xs={6} className={classes.row}>
+                    Name: 
+                </Grid>
+                <Grid item xs={6} className={classes.row}>
+                    {userData!.name}
+                </Grid>
+
+                <Grid item xs={6} className={classes.row}>
+                    Email:
+                </Grid>
+                <Grid item xs={6} className={classes.row}>
+                    {userData!.email}
+                </Grid>
+
+                <Grid item xs={6} className={classes.row}>
+                    Permission level:
+                </Grid>
+                <Grid item xs={6} className={classes.row}>
+                    {defineUserType(userData!.type)}
+                </Grid>
+
+                <Grid item xs={6} className={classes.row}>
+                    User since:
+                </Grid>
+                <Grid item xs={6} className={classes.row}>
+                    {new Date(userData!.created).toLocaleDateString('en-GB')}
+                </Grid>
+            </Grid>
         </CenteredWrapper>)
 }
 
