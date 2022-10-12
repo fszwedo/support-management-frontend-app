@@ -17,7 +17,7 @@ function ShiftEntryMonth(props: ShiftEntryMonthProps) {
     const [shiftChangeDay, setShiftChangeDay] = useState<string>();
 
     let fullDivContent: JSX.Element[] = [];
-    const monthNames = ['theres no month with number 0! :)',"January", "February", "March", "April", "May", "June",
+    const monthNames = ['theres no month with number 0! :)', "January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December"
     ];
 
@@ -44,9 +44,11 @@ function ShiftEntryMonth(props: ShiftEntryMonthProps) {
         //generate day and day name rows 
         const dayRow: JSX.Element[] = [];
         const dayNameRow: JSX.Element[] = [];
-        
+
         for (let k = 0; k < daysInMonth; k++) {
-            dayNameRow.push(<ShiftEntryTile key={`${k}`} shiftStart={0}>{new Date(props.year, props.month -1, k + 1).toLocaleString('en-us', { weekday: 'short' })}</ShiftEntryTile>)
+            dayNameRow.push(<ShiftEntryTile key={`${k}`} tileConfig='header'>
+                {new Date(props.year, props.month - 1, k + 1).toLocaleString('en-us', { weekday: 'short' })}
+            </ShiftEntryTile>)
         }
         fullDivContent.push(
             <div className={classes.rowWrapper}>
@@ -56,7 +58,7 @@ function ShiftEntryMonth(props: ShiftEntryMonthProps) {
 
         for (let k = 0; k < daysInMonth; k++) {
             //we have to add +1 to month below, as months are calculated from 0 in this component in general
-            dayRow.push(<ShiftEntryTile key={`${k}`} shiftStart={0} onClick={() => turnShiftChangeView(`${props.year}-${props.month}-${k + 1}`)} pulse={true}>{k + 1}</ShiftEntryTile>)
+            dayRow.push(<ShiftEntryTile key={`${k}`} tileConfig='header' onClick={() => turnShiftChangeView(`${props.year}-${props.month}-${k + 1}`)} pulse={true}>{k + 1}</ShiftEntryTile>)
         }
         fullDivContent.push(
             <div className={classes.rowWrapper}>
@@ -77,16 +79,15 @@ function ShiftEntryMonth(props: ShiftEntryMonthProps) {
                 if (day < 10) day = '0' + day;
                 const date = `${props.year.toString().split('0')[1]}-${month}-${day}`
                 const entry = props.shiftData.find(el => el.date === date)
+                
 
-
-                if (!entry) agentRow.push(<ShiftEntryTile key={`${agents[i]} ${date}`} shiftStart='nodata'></ShiftEntryTile>)
+                if (!entry) agentRow.push(<ShiftEntryTile key={`${agents[i]} ${date}`} tileConfig='nodata'></ShiftEntryTile>)
                 else {
                     const agentIndex = entry!.agents.findIndex(el => el === agents[i])
                     if (entry!.hours[agentIndex]) {
-                        const agentWorkingHours = entry!.hours[agentIndex].split('-');
-                        agentRow.push(<ShiftEntryTile key={`${agents[i]} ${date}`} shiftStart={parseInt(agentWorkingHours[0])}></ShiftEntryTile>)
+                        agentRow.push(<ShiftEntryTile key={`${agents[i]} ${date}`} tileConfig={entry.hours[agentIndex]}></ShiftEntryTile>)
                     }
-                    else agentRow.push(<ShiftEntryTile key={`${agents[i]} ${date}`} shiftStart={'nodata'}></ShiftEntryTile>)
+                    else agentRow.push(<ShiftEntryTile key={`${agents[i]} ${date}`} tileConfig='nodata'></ShiftEntryTile>)
                 }
             }
 

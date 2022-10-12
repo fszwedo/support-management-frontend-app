@@ -75,7 +75,7 @@ function ShiftChangeModal(props: ShiftChangeModalProps) {
         return <Modal>
             <form className={classes.shiftChangeForm} onSubmit={submitHandler}>
                 <div className={classes.header}>
-                    <label id='date'>{new Date(shift?.date as string).toLocaleDateString('en-US')}</label>
+                    <label id='date'>{new Date(props.day).toLocaleDateString('en-US')}</label>
                 </div>
                 {editHoursTable}
                 <div className={classes.actions}>

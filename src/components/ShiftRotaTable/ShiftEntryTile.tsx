@@ -5,27 +5,36 @@ import { useState } from 'react';
 
 
 interface ShiftEntryTileProps {
-    shiftStart: number | string,
+    tileConfig: string,
     date?: string,
-    children?: number | string,
+    children?: string | number,
     onClick?: MouseEventHandler,
     pulse?: boolean
 }
 
 function ShiftEntryTile(props: ShiftEntryTileProps) {
-    let className = 'noShift';
+    let className = 'noShift';   
+    if (props.tileConfig === 'header') className = 'headerTile';  
 
-    if (props.shiftStart === 0) className = 'headerTile';
-    else if (props.shiftStart < 14) className = 'morningShift';
-    else if (props.shiftStart >= 14) className = 'afternoonShift';
+    else if (parseInt(props.tileConfig.split('-')[0]) < 14) className = 'morningShift';
+    else if (parseInt(props.tileConfig.split('-')[0]) >= 14) className = 'afternoonShift';
 
     let fullClass = `${classes[className]} ${classes.tile}`;
-    if (props.pulse) fullClass = fullClass + ` ${classes.pulse}`
+    if (props.pulse) fullClass = fullClass + ` ${classes.pulse}`;
 
+    let workPeriods: string[] = [];
+    let workPeriodsContainer: JSX.Element[] = [];
+   
+    if(className === 'morningShift' || className === 'afternoonShift') workPeriods = props.tileConfig.split(';')
+    workPeriods.forEach(el => {
+        console.log(el)
+        workPeriodsContainer.push(<div className={classes.period}>{el}</div>);
+    })
     return <div
         className={fullClass}
         onClick={props.onClick}>
         {props.children}
+        {workPeriodsContainer}
     </div>
 }
 

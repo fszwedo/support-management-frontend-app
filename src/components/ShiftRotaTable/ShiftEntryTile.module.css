@@ -26,6 +26,15 @@
     background-color: orange;
 }
 
+.morningShift, .afternoonShift{
+    font-size: 8.5px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
 .tile {
     width: 30px;
     height: 20px;
