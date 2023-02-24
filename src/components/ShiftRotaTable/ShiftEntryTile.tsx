@@ -1,20 +1,41 @@
+import { MouseEventHandler } from 'react'
 import { ShiftRotaEntry } from '../../models/ShiftRotaData'
 import classes from './ShiftEntryTile.module.css'
+import { useState } from 'react';
 
 
 interface ShiftEntryTileProps {
-    shiftStart: number | string,
-    children?: number | string
+    tileConfig: string,
+    date?: string,
+    children?: string | number,
+    onClick?: MouseEventHandler,
+    pulse?: boolean
 }
 
-function ShiftEntryTile(props: ShiftEntryTileProps) {  
-    if(props.shiftStart === 0) return <div className={`${classes.headerTile} ${classes.tile}`}>{props.children}</div>    
-    
-    if(props.shiftStart < 14) return <div className={`${classes.morningShift} ${classes.tile}`}></div>
+function ShiftEntryTile(props: ShiftEntryTileProps) {
+    let className = 'noShift';   
+    if (props.tileConfig === 'header') className = 'headerTile';  
 
-    if(props.shiftStart >= 14) return <div className={`${classes.afternoonShift} ${classes.tile}`}></div>
+    else if (parseInt(props.tileConfig.split('-')[0]) < 14) className = 'morningShift';
+    else if (parseInt(props.tileConfig.split('-')[0]) >= 14) className = 'afternoonShift';
 
-    return <div className={`${classes.noShift} ${classes.tile}`}></div>
+    let fullClass = `${classes[className]} ${classes.tile}`;
+    if (props.pulse) fullClass = fullClass + ` ${classes.pulse}`;
+
+    let workPeriods: string[] = [];
+    let workPeriodsContainer: JSX.Element[] = [];
+   
+    if(className === 'morningShift' || className === 'afternoonShift') workPeriods = props.tileConfig.split(';')
+    workPeriods.forEach(el => {
+        console.log(el)
+        workPeriodsContainer.push(<div className={classes.period}>{el}</div>);
+    })
+    return <div
+        className={fullClass}
+        onClick={props.onClick}>
+        {props.children}
+        {workPeriodsContainer}
+    </div>
 }
 
 export default ShiftEntryTile;
