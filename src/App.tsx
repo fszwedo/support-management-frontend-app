@@ -19,6 +19,7 @@ import LoginPage from './pages/Login';
 import { getUserFromLocalStorage, removeUserFromLocalStorage } from './app/utils';
 
 import { ThemeProvider, createTheme } from '@material-ui/core/styles'
+import ReportingPage from './pages/ReportingPage';
 
 const theme = createTheme({
   palette: {
@@ -66,12 +67,16 @@ function App() {
             <Route path={PATHS.SHIFTROTA}>
               <ShiftRotaPage />
             </Route>
+            <Route path={PATHS.REPORTING}>
+              <ReportingPage />
+            </Route>
+            {/* Placing the reporting route below the APPPATH route doesn't work */}
             <Route path={APPPATH}>
               <HomePage />
             </Route>
-            <Route>
+            {/* <Route>
               <ShiftRotaPage />
-            </Route>
+            </Route> */}
           </Switch>
         </div>
       </div>
