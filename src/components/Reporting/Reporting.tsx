@@ -1,12 +1,13 @@
-import { useState, useEffect } from "react"
-import { makeStyles } from '@material-ui/core/styles';
-import { Box, Grid, IconButton, Tooltip, Typography, Modal } from '@material-ui/core';
-import { SlInfo,SlClose } from "react-icons/sl";
+import { useState } from "react";
+import { QueryTypes } from "./QueryTypes";
+import { makeStyles } from "@material-ui/core/styles";
+import { Box, Grid, IconButton, Tooltip, Typography } from "@material-ui/core";
+import { SlInfo } from "react-icons/sl";
+import ReportingQueryModals from "./ReportingQueryModals";
 
-interface ReportingBox {
-    id?:number,
-    name:string,
-    description:string
+export interface ReportingQuery {
+  name: string;
+  description: string;
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -18,62 +19,46 @@ const useStyles = makeStyles((theme) => ({
     border: `1px solid ${theme.palette.grey[300]}`,
     borderRadius: theme.shape.borderRadius,
     padding: theme.spacing(2),
-    textAlign: 'center',
-    height:"150px",
-    display:"flex",
-    flexDirection:"column",
-    justifyContent:"space-between"
+    textAlign: "center",
+    height: "150px",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
   },
   name: {
-    cursor: 'pointer',
-  },
-  modal: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  paper: {
-    backgroundColor: theme.palette.background.paper,
-    border: `2px solid ${theme.palette.primary.main}`,
-    borderRadius: theme.shape.borderRadius,
-    boxShadow: theme.shadows[5],
-    padding: theme.spacing(2, 4, 3),
+    cursor: "pointer",
   },
 }));
 
-const data = [
-  { id: 1, name: 'Purchase Events', description: 'Description for Purchase Events' },
-  { id: 2, name: 'Referrers', description: 'Description for Referrers' },
-  { id: 3, name: 'Live Assistants', description: 'Description for Live Assistants' },
-  { id: 4, name: 'Assistant starts', description: 'Description for Assistant starts' },
-];
-
 const Reporting = () => {
   const classes = useStyles();
-  const [modalOpen, setModalOpen] = useState(false);
-  const [selectedBox, setSelectedBox] = useState<ReportingBox>({name:"",description:""});
+  const [selectedQuery, setSelectedQuery] = useState<ReportingQuery>({
+    name: "",
+    description: "",
+  });
+  const [modalVisible, setModalVisible] = useState<boolean>(false);
 
-  const handleBoxClick = (box:any) => {
-    setSelectedBox(box);
-    setModalOpen(true);
-  };
-
-  const handleModalClose = () => {
-    setModalOpen(false);
+  const handleQueryClick = (box: any) => {
+    setSelectedQuery(box);
+    setModalVisible(true);
   };
 
   return (
     <div className={classes.root}>
       <Grid container spacing={2}>
-        {data.map((item) => (
+        {QueryTypes.map((item) => (
           <Grid key={item.id} item xs={6} sm={3}>
             <Box className={classes.box}>
-              <Typography variant="h6" className={classes.name} onClick={() => handleBoxClick(item)}>
+              <Typography
+                variant="h6"
+                className={classes.name}
+                onClick={() => handleQueryClick(item)}
+              >
                 {item.name}
               </Typography>
               <Tooltip title={item.description}>
                 <IconButton aria-label="description">
-                  <SlInfo style={{color:'white'}} />
+                  <SlInfo style={{ color: "white" }} />
                 </IconButton>
               </Tooltip>
             </Box>
@@ -81,23 +66,14 @@ const Reporting = () => {
         ))}
       </Grid>
 
-      <Modal
-        className={classes.modal}
-        open={modalOpen}
-        onClose={handleModalClose}
-        aria-labelledby="modal-title"
-        aria-describedby="modal-description"
-      >
-        <Box className={classes.paper}>
-          <SlClose onClick={handleModalClose} style={{cursor:"pointer"}}/>  
-          <Typography variant="h4" id="modal-title">
-            {selectedBox.name}
-          </Typography>
-          <Typography variant="body1" id="modal-description">
-            {selectedBox.description}
-          </Typography>
-        </Box>
-      </Modal>
+      {modalVisible && (
+        <ReportingQueryModals
+          selectedQuery={selectedQuery}
+          closeHandler={() => {
+            setModalVisible(false);
+          }}
+        />
+      )}
     </div>
   );
 };
