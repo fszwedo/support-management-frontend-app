@@ -41,6 +41,7 @@ const Reporting = () => {
   const handleQueryClick = (box: any) => {
     setSelectedQuery(box);
     setModalVisible(true);
+    localStorage.setItem("queryType",box.name)
   };
 
   return (

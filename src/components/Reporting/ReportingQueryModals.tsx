@@ -7,13 +7,24 @@ import { ReportingQuery } from "./Reporting";
 import DatePickers from "./ReportingDatePicker";
 import axios from "axios";
 import Loader from "../Loader/Loader";
+import { QueryTypes } from "./QueryTypes";
 
 interface IPROPS {
   selectedQuery: ReportingQuery;
   closeHandler: Function;
 }
 
+const currentQuery = localStorage.getItem("queryType");
+
+//Different URLs for different queries
+// const URL:string="";
+// if (currentQuery === "Purchase Events")
+//   URL = `http://localhost:3001/api/reporting/purchase-events`;
+// else
+//   URL = "";
+
 const URL = `http://localhost:3001/api/reporting/purchase-events`;
+
 
 const useStyles = makeStyles((theme) => ({
   paper: {

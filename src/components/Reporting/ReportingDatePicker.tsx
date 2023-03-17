@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme: Theme) =>
         color: "white",
       },
       "& .MuiInput-underline.Mui-error:after": {
-        borderBottomColor: "white",
+        borderBottomColor: "black",
       },
     },
     labelColor: {
