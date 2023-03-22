@@ -27,7 +27,6 @@ function ShiftEntryTile(props: ShiftEntryTileProps) {
    
     if(className === 'morningShift' || className === 'afternoonShift') workPeriods = props.tileConfig.split(';')
     workPeriods.forEach(el => {
-        console.log(el)
         workPeriodsContainer.push(<div className={classes.period}>{el}</div>);
     })
     return <div

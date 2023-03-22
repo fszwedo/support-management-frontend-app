@@ -3,6 +3,7 @@ import classes from './ShiftRotasMonth.module.css'
 import { ShiftRotaEntry } from '../../models/ShiftRotaData'
 import { useState, useEffect } from 'react'
 import ShiftChangeModal from './ShiftChangeModal'
+import { getUserFromLocalStorage } from '../../app/utils'
 
 interface ShiftEntryMonthProps {
     shiftData: ShiftRotaEntry[],
@@ -56,9 +57,18 @@ function ShiftEntryMonth(props: ShiftEntryMonthProps) {
             </div>
         );
 
+        const isAdmin = getUserFromLocalStorage().userType === '1' ? true : false;
+
         for (let k = 0; k < daysInMonth; k++) {
             //we have to add +1 to month below, as months are calculated from 0 in this component in general
-            dayRow.push(<ShiftEntryTile key={`${k}`} tileConfig='header' onClick={() => turnShiftChangeView(`${props.year}-${props.month}-${k + 1}`)} pulse={true}>{k + 1}</ShiftEntryTile>)
+            dayRow.push(
+                <ShiftEntryTile key={`${k}`} tileConfig='header'
+                    onClick={() => {
+                        if (isAdmin) turnShiftChangeView(`${props.year}-${props.month}-${k + 1}`)
+                    }}
+                    pulse={isAdmin}>{k + 1}
+                </ShiftEntryTile>
+            )
         }
         fullDivContent.push(
             <div className={classes.rowWrapper}>
@@ -79,7 +89,7 @@ function ShiftEntryMonth(props: ShiftEntryMonthProps) {
                 if (day < 10) day = '0' + day;
                 const date = `${props.year.toString().split('0')[1]}-${month}-${day}`
                 const entry = props.shiftData.find(el => el.date === date)
-                
+
 
                 if (!entry) agentRow.push(<ShiftEntryTile key={`${agents[i]} ${date}`} tileConfig='nodata'></ShiftEntryTile>)
                 else {

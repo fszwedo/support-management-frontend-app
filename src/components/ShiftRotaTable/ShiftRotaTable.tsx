@@ -31,7 +31,10 @@ function ShiftRotaTable(props: ShiftRotaTableProps) {
         const currentYear = new Date().getFullYear();
 
         const monthTables: JSX.Element[] = [];
-        for (let i = startDateMonth; i <= startDateMonth + 2; i++) monthTables.push(<ShiftEntryMonth key={`${i}-${currentYear}`} shiftData={shifts} month={i} year={currentYear} renderCallback={() => setIsReloading(true)} />)
+        for (let i = startDateMonth; i <= startDateMonth + 2; i++) {
+            const monthShifts = shifts.filter(shift => (parseInt(shift.date.split('-')[1]) === i && parseInt('20'+ shift.date.split('-')[0]) === currentYear));
+            monthTables.push(<ShiftEntryMonth key={`${i}-${currentYear}`} shiftData={monthShifts} month={i} year={currentYear} renderCallback={() => setIsReloading(true)} />)
+        }
         table = monthTables;
     }
 
