@@ -85,13 +85,11 @@ const ReportingQueryModals: React.FC<IPROPS> = ({
         setIsLoading(false);
         setSubmitError(false);
         removeLocalStorageItems();
-        console.log(response);
       })
       .catch(function (error) {
         setIsLoading(false);
         setSubmitError(true);
         removeLocalStorageItems();
-        console.log(error);
       });
     setSubmitButtonClicked(true);
   };
