@@ -149,7 +149,7 @@ const ReportingQueryModals: React.FC<IPROPS> = ({
                 fontWeight: "bold",
               }}
             >
-              Thank you! Report will be sent to your email soon!
+              Thank you! The requested report will be sent to your email soon!
             </Box>
           )}
 
@@ -160,7 +160,7 @@ const ReportingQueryModals: React.FC<IPROPS> = ({
                 color: "red",
               }}
             >
-              Sorry there seems to be an error. Please try again after sometime!
+              There was an error in submitting your export request. Please try again or contact help@zoovu.com if the issue persists!
             </Box>
           )}
         </Box>
