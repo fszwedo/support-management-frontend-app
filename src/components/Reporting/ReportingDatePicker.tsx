@@ -36,17 +36,18 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default function DatePickers() {
   const classes = useStyles();
-  const [startDate, setStartDate] = useState<Date | null>(null);
-  const [endDate, setEndDate] = useState<Date | null>(null);
 
-  const requiredStartDateError = startDate === null || startDate === undefined;
-  const requiredEndDateError =
-    endDate === null ||
-    endDate === undefined ||
-    startDate === null ||
-    startDate === undefined;
-  const helperText =
-    requiredEndDateError || requiredStartDateError ? "" : undefined;
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = String(now.getMonth() + 1).padStart(2, "0");
+  const day = String(now.getDate()).padStart(2, "0");
+  const currentDate = `${year}-${month}-${day}`;
+
+  const [startDate, setStartDate] = useState<Date | String>(currentDate);
+  const [endDate, setEndDate] = useState<Date | String>(currentDate);
+
+  const requiredStartDateError = startDate > currentDate;
+  const requiredEndDateError = startDate > endDate;
 
   const correctDateFormat = (date: any) => {
     const [year, month, day] = date.split("-");
@@ -77,7 +78,9 @@ export default function DatePickers() {
           className: classes.labelColor,
         }}
         onChange={handleStartDateChange}
-        helperText={helperText}
+        helperText={
+          requiredStartDateError ? "Start date cannot be in the future" : null
+        }
         error={requiredStartDateError}
       />
 
@@ -92,7 +95,9 @@ export default function DatePickers() {
           className: classes.labelColor,
         }}
         onChange={handleEndDateChange}
-        helperText={helperText}
+        helperText={
+          requiredEndDateError ? "End date cannot be before start date" : ""
+        }
         error={requiredEndDateError}
       />
     </Grid>
