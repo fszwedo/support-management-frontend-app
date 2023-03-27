@@ -9,31 +9,14 @@ import axios from "axios";
 import Loader from "../Loader/Loader";
 import { QueryTypes } from "./QueryTypes";
 import { BACKEND_ENDPOINTS } from "../../constants";
+import { useStyles } from "./CSS_Reporting/ReportingCSS";
 
 interface IPROPS {
   selectedQuery: ReportingQuery;
   closeHandler: Function;
 }
 
-const URL = BACKEND_ENDPOINTS.PURCHASE_EVENTS
-
-const useStyles = makeStyles((theme) => ({
-  paper: {
-    backgroundColor: theme.palette.background.paper,
-    border: `2px solid ${theme.palette.primary.main}`,
-    borderRadius: theme.shape.borderRadius,
-    boxShadow: theme.shadows[5],
-    padding: theme.spacing(2, 4, 3),
-  },
-  labelColor: {
-    color: "white",
-  },
-  textField: {
-    "& .MuiInput-root": {
-      borderBottom: "white !important",
-    },
-  },
-}));
+const URL = BACKEND_ENDPOINTS.PURCHASE_EVENTS;
 
 const ReportingQueryModals: React.FC<IPROPS> = ({
   selectedQuery,
@@ -94,7 +77,7 @@ const ReportingQueryModals: React.FC<IPROPS> = ({
               onClick={() => {
                 closeHandler();
               }}
-              style={{ cursor: "pointer" }}
+              className={classes.closeIcon}
             />
           </Box>
           <Typography variant="h4" id="modal-title">
@@ -110,7 +93,6 @@ const ReportingQueryModals: React.FC<IPROPS> = ({
                 value={advisorId}
                 className={classes.textField}
                 onChange={handleAdvisorIdChange}
-                style={{ marginTop: "16px", marginLeft: "8px" }}
                 InputLabelProps={{
                   className: classes.labelColor,
                 }}
@@ -120,7 +102,7 @@ const ReportingQueryModals: React.FC<IPROPS> = ({
               <Button
                 variant="contained"
                 size="small"
-                style={{ marginTop: "20px", marginLeft: "5px" }}
+                className={classes.emailButton}
                 type="submit"
               >
                 Send me email
@@ -131,25 +113,17 @@ const ReportingQueryModals: React.FC<IPROPS> = ({
           {isLoading && <Loader />}
 
           {!isLoading && submitButtonClicked && !submitError && (
-            <Box
-              style={{
-                marginTop: "16px",
-                color: "#008000",
-                fontWeight: "bold",
-              }}
-            >
+            <Box className={classes.successBox}>
               Thank you! The requested report will be sent to your email soon!
             </Box>
           )}
 
           {!isLoading && submitButtonClicked && submitError && (
-            <Box
-              style={{
-                marginTop: "16px",
-                color: "red",
-              }}
-            >
-              There was an error in submitting your export request. Please try again or contact "help@zoovu.com" if the issue persists!
+            <Box className={classes.errorBox}>
+              There was an error in submitting your export request. Please try
+              again or contact{" "}
+              <span className={classes.errorMailSpan}>"help@zoovu.com"</span> if the
+              issue persists!
             </Box>
           )}
         </Box>
