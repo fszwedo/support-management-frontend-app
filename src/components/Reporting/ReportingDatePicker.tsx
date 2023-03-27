@@ -2,37 +2,7 @@ import { useState } from "react";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import { Grid } from "@material-ui/core";
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    container: {
-      display: "flex",
-      flexWrap: "wrap",
-    },
-    textField: {
-      marginLeft: theme.spacing(1),
-      marginRight: theme.spacing(1),
-      marginTop: theme.spacing(4),
-      width: 200,
-      "& input::-webkit-calendar-picker-indicator": {
-        filter:
-          "invert(1) brightness(100%) sepia(100%) saturate(10000%) hue-rotate(180deg)",
-      },
-      "& .Mui-error": {
-        color: "white",
-      },
-      "& .MuiFormHelperText-root": {
-        color: "white",
-      },
-      "& .MuiInput-underline.Mui-error:after": {
-        borderBottomColor: "black",
-      },
-    },
-    labelColor: {
-      color: "white",
-    },
-  })
-);
+import { useStyles } from "./CSS_Reporting/ReportingDatePickerCSS";
 
 export default function DatePickers() {
   const classes = useStyles();

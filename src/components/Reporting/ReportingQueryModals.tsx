@@ -9,7 +9,7 @@ import axios from "axios";
 import Loader from "../Loader/Loader";
 import { QueryTypes } from "./QueryTypes";
 import { BACKEND_ENDPOINTS } from "../../constants";
-import { useStyles } from "./CSS_Reporting/ReportingCSS";
+import { useStyles } from "./CSS_Reporting/ReportingQueryModalCSS";
 
 interface IPROPS {
   selectedQuery: ReportingQuery;

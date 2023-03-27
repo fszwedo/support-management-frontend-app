@@ -4,31 +4,12 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Box, Grid, IconButton, Tooltip, Typography } from "@material-ui/core";
 import { SlInfo } from "react-icons/sl";
 import ReportingQueryModals from "./ReportingQueryModals";
+import { useStyles } from "./CSS_Reporting/ReportingCSS";
 
 export interface ReportingQuery {
   name: string;
   description: string;
 }
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-    marginTop: theme.spacing(2),
-  },
-  box: {
-    border: `1px solid ${theme.palette.grey[300]}`,
-    borderRadius: theme.shape.borderRadius,
-    padding: theme.spacing(2),
-    textAlign: "center",
-    height: "150px",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "space-between",
-  },
-  name: {
-    cursor: "pointer",
-  },
-}));
 
 const Reporting = () => {
   const classes = useStyles();
@@ -55,7 +36,7 @@ const Reporting = () => {
               </Typography>
               <Tooltip title={item.description}>
                 <IconButton aria-label="description">
-                  <SlInfo style={{ color: "white" }} />
+                  <SlInfo className={classes.infoButton} />
                 </IconButton>
               </Tooltip>
             </Box>
