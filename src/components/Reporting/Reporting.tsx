@@ -41,7 +41,7 @@ const Reporting = () => {
   const handleQueryClick = (box: any) => {
     setSelectedQuery(box);
     setModalVisible(true);
-    localStorage.setItem("queryType",box.name)
+    localStorage.setItem("queryType", box.name);
   };
 
   return (
@@ -49,12 +49,8 @@ const Reporting = () => {
       <Grid container spacing={2}>
         {QueryTypes.map((item) => (
           <Grid key={item.id} item xs={6} sm={3}>
-            <Box className={classes.box}>
-              <Typography
-                variant="h6"
-                className={classes.name}
-                onClick={() => handleQueryClick(item)}
-              >
+            <Box className={classes.box} onClick={() => handleQueryClick(item)}>
+              <Typography variant="h6" className={classes.name}>
                 {item.name}
               </Typography>
               <Tooltip title={item.description}>

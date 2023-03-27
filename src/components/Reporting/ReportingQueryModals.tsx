@@ -8,23 +8,14 @@ import DatePickers from "./ReportingDatePicker";
 import axios from "axios";
 import Loader from "../Loader/Loader";
 import { QueryTypes } from "./QueryTypes";
+import { BACKEND_ENDPOINTS } from "../../constants";
 
 interface IPROPS {
   selectedQuery: ReportingQuery;
   closeHandler: Function;
 }
 
-const currentQuery = localStorage.getItem("queryType");
-
-//Different URLs for different queries
-// const URL:string="";
-// if (currentQuery === "Purchase Events")
-//   URL = `http://localhost:3001/api/reporting/purchase-events`;
-// else
-//   URL = "";
-
-const URL = `http://localhost:3001/api/reporting/purchase-events`;
-
+const URL = BACKEND_ENDPOINTS.PURCHASE_EVENTS
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -158,7 +149,7 @@ const ReportingQueryModals: React.FC<IPROPS> = ({
                 color: "red",
               }}
             >
-              There was an error in submitting your export request. Please try again or contact help@zoovu.com if the issue persists!
+              There was an error in submitting your export request. Please try again or contact "help@zoovu.com" if the issue persists!
             </Box>
           )}
         </Box>
