@@ -1,5 +1,5 @@
-//export const BACKEND_URL = 'https://zendesk-backend.onrender.com'
-export const BACKEND_URL = 'http://localhost:3001'
+export const BACKEND_URL = 'https://zendesk-backend.onrender.com'
+//export const BACKEND_URL = 'http://localhost:3001'
 // use 'http://localhost:3001' if you run backend locally
 
 export const APPPATH = ''
