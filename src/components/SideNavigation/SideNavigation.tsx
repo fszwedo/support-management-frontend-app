@@ -11,6 +11,7 @@ function SideNavigation(props: SideNavigationProps) {
     return <div className={classes.container}>
         <div className={classes.main}>
             <Link to={PATHS.SHIFTROTA} className={classes.button}>Shift Rota</Link>
+            <Link to={PATHS.REPORTING} className={classes.button}>Reporting</Link>
         </div>
         <div>
             <Link to={PATHS.ME} className={classes.logout}>My Info</Link>

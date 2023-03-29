@@ -24,7 +24,10 @@ function Login(props: LoginProps) {
     const [error, setError] = useState('');
     const [isLoading, setIsLoading] = useState(false);
 
+    
+
     const loginHandler = async () => {
+        localStorage.setItem("email",loginRef.current!.value)
         setIsLoading(true);
         const service = new BaseService();
         try {
@@ -34,6 +37,7 @@ function Login(props: LoginProps) {
             })
             saveUserDataToLocalStorage(response);
             props.submitHandler();
+            
             setIsLoading(false);
         }
         catch (err: any) {
