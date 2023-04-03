@@ -96,6 +96,7 @@ const ReportingQueryModals: React.FC<IPROPS> = ({
                 InputLabelProps={{
                   className: classes.labelColor,
                 }}
+                data-testid="account-id-input"
               />
 
               <DatePickers />
@@ -104,6 +105,7 @@ const ReportingQueryModals: React.FC<IPROPS> = ({
                 size="small"
                 className={classes.emailButton}
                 type="submit"
+                data-testid="submit-button"
               >
                 Send me email
               </Button>
@@ -122,8 +124,8 @@ const ReportingQueryModals: React.FC<IPROPS> = ({
             <Box className={classes.errorBox}>
               There was an error in submitting your export request. Please try
               again or contact{" "}
-              <span className={classes.errorMailSpan}>"help@zoovu.com"</span> if the
-              issue persists!
+              <span className={classes.errorMailSpan}>"help@zoovu.com"</span> if
+              the issue persists!
             </Box>
           )}
         </Box>
